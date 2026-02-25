@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useMemo } from "react";
 
 export const TodoContext = createContext();
 
@@ -8,6 +8,19 @@ export function TodoProvider({ children }) {
 		const saved = localStorage.getItem("todos");
 		return saved ? JSON.parse(saved) : [];
 	});
+
+	// value object ref > only change when todos change
+	const value = useMemo(
+		() => ({
+			todos,
+			addTodo,
+			toggleTodo,
+			deleteTodo,
+			editTodo,
+			clearCompleted,
+		}),
+		[todos],
+	);
 
 	useEffect(() => {
 		localStorage.setItem("todos", JSON.stringify(todos));
@@ -35,18 +48,5 @@ export function TodoProvider({ children }) {
 		setTodos((prev) => prev.filter((todo) => !todo.completed));
 	}
 
-	return (
-		<TodoContext.Provider
-			value={{
-				todos,
-				addTodo,
-				toggleTodo,
-				deleteTodo,
-				editTodo,
-				clearCompleted,
-			}}
-		>
-			{children}
-		</TodoContext.Provider>
-	);
+	return <TodoContext.Provider value={value}>{children}</TodoContext.Provider>;
 }
