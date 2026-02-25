@@ -1,0 +1,61 @@
+#root {
+	max-width: 1280px;
+	margin: 0 auto;
+	padding: 2rem;
+}
+
+.app {
+	width: 400px;
+}
+
+.app.light {
+	background: #ffffff;
+	color: #000000;
+}
+
+.app.dark {
+	background: #242424;
+	color: #ffffff;
+}
+
+main {
+	border-radius: 1em;
+	padding: 2em;
+}
+
+button {
+	margin: 0.2em;
+	flex: 1;
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.todo-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 8px 0;
+	border-bottom: 1px solid #ccc;
+}
+
+.filter-buttons {
+	width: 100%;
+	display: flex;
+	padding: 1em 0;
+	border-bottom: 1px solid #ccc;
+}
+
+.active-filter {
+	background-color: #444;
+	color: white;
+	border-color: #444;
+}
+
+form {
+	display: flex;
+	align-items: center;
+}
